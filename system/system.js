@@ -19,22 +19,6 @@ socket.on('New-flight', (payload) => {
      
 });
 
-socket.on('took-off', (payload) => {
-    io.emit('took-off', payload);
-    console.log(`Flight {
-        event: 'took-off',
-        time: ${payload.time},
-        Details: {
-            airLine: ${payload.airLine},
-            flightID: ${payload.flightID},
-            pilot: ${payload.pilot},
-        },
-        destination: ${payload.destination}
-    }`);
-});
-});
-
-fire_io.on('connection', (socket) => {
 socket.on('arrived', (payload) => {
     io.emit('arrived', payload);
     console.log(`Flight {
@@ -48,5 +32,21 @@ socket.on('arrived', (payload) => {
         destination: ${payload.destination}
     }`);
     
+});
+});
+
+fire_io.on('connection', (socket) => {
+socket.on('took-off', (payload) => {
+    io.emit('took-off', payload);
+    console.log(`Flight {
+        event: 'took-off',
+        time: ${payload.time},
+        Details: {
+            airLine: ${payload.airLine},
+            flightID: ${payload.flightID},
+            pilot: ${payload.pilot},
+        },
+        destination: ${payload.destination}
+    }`);
 });
 });
